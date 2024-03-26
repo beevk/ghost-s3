@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  ghost:
+    # image: ghost-s3:latest
+    build: .
+    restart: always
+    ports:
+      - 8085:2368
+    environment:
+      # # see https://ghost.org/docs/config/#configuration-options
+      # database__client: mysql
+      # database__connection__host: db
+      # database__connection__user: userOne
+      # database__connection__password: secretPassword
+      # database__connection__database: ghost
+      url: http://localhost:8085
+      NODE_ENV: development # default: production
+      storage__active: s3
+      storage__s3__accessKeyId: accessKey
+      storage__s3__secretAccessKey: accessKeySecret
+      storage__s3__region: ap-southeast-1
+      storage__s3__bucket: ghost-blog-demo
+      # storage__s3__assetHost: <Cloudfront URL>
+      storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
+      storage__s3__forcePathStyle: true
+      storage__s3__acl: private
+    volumes:
+      - ghost:/var/lib/ghost/content
+
+volumes:
+  ghost:
