@@ -25,21 +25,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_SECRET }}
 
-      - name: Prepare Docker tags
-        id: prepareTag
-        run: |
-          if [[ ${{ github.ref }} == 'refs/tags/'* ]]; then
-          TAGS="${{ github.repository }}:${{ github.ref_name }},"
-          else
-            TAGS=""
-          fi
-          TAGS+="${{ github.repository }}:latest"
-          echo "{tags}={$TAGS}" >> $GITHUB_OUTPUT
-
       - name: Build and push with latest tag
         uses: docker/build-push-action@v5
         with:
           context: "."
           platforms: "linux/amd64,linux/arm64"
           push: true
-          tags: ${{ steps.prepareTag.outputs.tags }}
+          tags: |
+            "${{ github.repository }}:latest"
+            "${{ github.repository }}:${{ github.ref_name }}"
