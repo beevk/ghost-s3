@@ -4,26 +4,30 @@ This image contains Ghost:5.x with S3 as storage adapter and Cloudfront as CDN.
 
 To configure S3 and Cloudfront, you need to pass following environment variables:
 
-```shell
-storage__active=s3
-storage__s3__accessKeyId=<AWS IAM User>
-storage__s3__secretAccessKey=<IAM Secret Key>
-storage__s3__region=<S3 region>
-storage__s3__bucket=<S3 bucket name>
-storage__s3__assetHost=<Cloudfront URL>
-storage__s3__pathPrefix=images # Optional, Set this if you want all images to be stored in a subfolder
-storage__s3__forcePathStyle=true
-storage__s3__acl=private
+```yaml
+      storage__active: s3
+      storage__s3__accessKeyId: <AWS IAM User>
+      storage__s3__secretAccessKey: <IAM Secret Key>
+      storage__s3__region: <S3 region>
+      storage__s3__bucket: <S3 bucket name>
+      storage__s3__assetHost: <Cloudfront URL>
+      storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
+      storage__s3__forcePathStyle: true
+      storage__s3__acl: private
 ```
 
-Need help setting up IAM user, S3 bucket and Cloudfront? See [this guide](https://github.com/)
+Need help setting up IAM user, S3 bucket and Cloudfront? See [this guide for S3](https://youtu.be/eQAIojcArRY?si=zfGmxBu7J18vcijD&t=529) and [this for Cloudfront] (https://youtu.be/kbI7kRWAU-w?si=hAtwkz-lZNF-Volz&t=129)
 
 ## How to Use?
 This will start a Ghost development instance listening on the default Ghost port of 2368.
-`docker run -d --name ghost-app -e NODE_ENV=development beevk/ghost-s3:latest`
+
+```shell
+docker run -d --name ghost-app -e NODE_ENV=development beevk/ghost-s3:latest
+```
 
 ### To start using docker compose:
-```shell
+
+```yaml
 version: '3.1'
 
 services:
@@ -42,17 +46,17 @@ services:
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
       url: http://example.com
-      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
-      #NODE_ENV: development
-      storage__active=s3
-      storage__s3__accessKeyId=<AWS IAM User>
-      storage__s3__secretAccessKey=<IAM Secret Key>
-      storage__s3__region=<S3 region>
-      storage__s3__bucket=<S3 bucket name>
-      storage__s3__assetHost=<Cloudfront URL>
-      storage__s3__pathPrefix=images # Optional, Set this if you want all images to be stored in a subfolder
-      storage__s3__forcePathStyle=true
-      storage__s3__acl=private
+      # This image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
+      # NODE_ENV: development
+      storage__active: s3
+      storage__s3__accessKeyId: <AWS IAM User>
+      storage__s3__secretAccessKey: <IAM Secret Key>
+      storage__s3__region: <S3 region>
+      storage__s3__bucket: <S3 bucket name>
+      storage__s3__assetHost: <Cloudfront URL>
+      storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
+      storage__s3__forcePathStyle: true
+      storage__s3__acl: private
     volumes:
       - ghost:/var/lib/ghost/content
 
