@@ -2,8 +2,6 @@ name: Publish Docker image
 
 on:
   push:
-    branches:
-      - "main"
     tags:
       - "v*"
 
@@ -30,12 +28,13 @@ jobs:
       - name: Prepare Docker tags
         id: prepareTag
         run: |
-          VERSION=${GITHUB_REF##refs/tags/}  # Extract version from tag name
-          TAGS="${{ github.repository }}:latest"
-          if [[ ! -z $VERSION ]]; then
-            TAGS="$TAGS,${{ github.repository }}:$VERSION"
+          if [[ ${{ github.ref }} == 'refs/tags/'* ]]; then
+          TAGS="${{ github.repository }}:${{ github.ref_name }},"
+          else
+            TAGS=""
           fi
-          echo "::set-output name=tags::$TAGS"
+          TAGS+="${{ github.repository }}:latest"
+          echo "{tags}={$TAGS}" >> $GITHUB_OUTPUT
 
       - name: Build and push with latest tag
         uses: docker/build-push-action@v5
@@ -44,6 +43,3 @@ jobs:
           platforms: "linux/amd64,linux/arm64"
           push: true
           tags: ${{ steps.prepareTag.outputs.tags }}
-
-      - name: Logout of Docker Hub
-        uses: docker/logout-action@v3

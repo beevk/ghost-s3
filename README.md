@@ -1,19 +1,19 @@
 # Ghost S3 Storage Adapter
 
-This image contains Ghost:5.x with S3 as storage adapter and Cloudfront as CDN.
+This image contains Ghost:5.81.0 with S3 as storage adapter and Cloudfront as CDN.
 
 To configure S3 and Cloudfront, you need to pass following environment variables:
 
 ```yaml
-      storage__active: s3
-      storage__s3__accessKeyId: <AWS IAM User>
-      storage__s3__secretAccessKey: <IAM Secret Key>
-      storage__s3__region: <S3 region>
-      storage__s3__bucket: <S3 bucket name>
-      storage__s3__assetHost: <Cloudfront URL>
-      storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
-      storage__s3__forcePathStyle: true
-      storage__s3__acl: private
+  storage__active: s3
+  storage__s3__accessKeyId: <AWS IAM User>
+  storage__s3__secretAccessKey: <IAM Secret Key>
+  storage__s3__region: <S3 region>
+  storage__s3__bucket: <S3 bucket name>
+  storage__s3__assetHost: <Cloudfront URL> # https://<Cloudfront URL>
+  storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
+  storage__s3__forcePathStyle: true
+  storage__s3__acl: private
 ```
 
 Need help setting up IAM user, S3 bucket and Cloudfront? See [this guide for S3](https://youtu.be/eQAIojcArRY?si=zfGmxBu7J18vcijD&t=529) and [this for Cloudfront](https://youtu.be/kbI7kRWAU-w?si=hAtwkz-lZNF-Volz&t=129)
@@ -53,7 +53,7 @@ services:
       storage__s3__secretAccessKey: <IAM Secret Key>
       storage__s3__region: <S3 region>
       storage__s3__bucket: <S3 bucket name>
-      storage__s3__assetHost: <Cloudfront URL>
+      storage__s3__assetHost: <Cloudfront URL> # https://<Cloudfront URL>
       storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
       storage__s3__forcePathStyle: true
       storage__s3__acl: private
