@@ -23,9 +23,7 @@
   "bugs": {
     "url": "https://github.com/beevk/ghost-s3/issues"
   },
-  "dependencies": {
-    "ghost-storage-adapter-s3": "^2.8.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^10.0.2",

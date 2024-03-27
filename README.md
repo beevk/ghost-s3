@@ -10,7 +10,7 @@ storage__s3__accessKeyId=<AWS IAM User>
 storage__s3__secretAccessKey=<IAM Secret Key>
 storage__s3__region=<S3 region>
 storage__s3__bucket=<S3 bucket name>
-storage__s3__assetHost=<Cloudfront URL>
+storage__s3__assetHost=<Cloudfront URL> # https://...
 storage__s3__pathPrefix=images # Optional, Set this if you want all images to be stored in a subfolder
 storage__s3__forcePathStyle=true
 storage__s3__acl=private
@@ -49,7 +49,7 @@ services:
       storage__s3__secretAccessKey=<IAM Secret Key>
       storage__s3__region=<S3 region>
       storage__s3__bucket=<S3 bucket name>
-      storage__s3__assetHost=<Cloudfront URL>
+      storage__s3__assetHost=<Cloudfront URL> # Full URL
       storage__s3__pathPrefix=images # Optional, Set this if you want all images to be stored in a subfolder
       storage__s3__forcePathStyle=true
       storage__s3__acl=private
