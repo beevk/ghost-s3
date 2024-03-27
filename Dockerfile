@@ -1,15 +1,6 @@
-FROM ghost:latest
-RUN mv content.orig/* content/
+FROM ghost:5.81.0
 
+WORKDIR /var/lib/ghost
 
-COPY package.json package.json
-
-ENV NODE_ENV=production
-RUN npm install --omit=dev
-
-# Run scripts to add adapters, themes, and patches
-COPY copy-adapter.sh copy-adapter.sh
-RUN chmod +x copy-adapter.sh && ./copy-adapter.sh
-
-# Run ghost entrypoint
-CMD ["node", "current/index.js"]
+RUN npm install -g ghost-storage-adapter-s3 && \
+    ln -s /usr/local/lib/node_modules/ghost-storage-adapter-s3 ./current/core/server/adapters/storage/s3

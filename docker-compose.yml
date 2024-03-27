@@ -2,7 +2,7 @@ services:
 
   ghost:
     # image: ghost-s3:latest
-    build: .
+    image: beevk/ghost-s3:latest
     restart: always
     ports:
       - 2368:2368
