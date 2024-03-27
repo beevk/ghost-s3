@@ -16,7 +16,7 @@ To configure S3 and Cloudfront, you need to pass following environment variables
       storage__s3__acl: private
 ```
 
-Need help setting up IAM user, S3 bucket and Cloudfront? See [this guide for S3](https://youtu.be/eQAIojcArRY?si=zfGmxBu7J18vcijD&t=529) and [this for Cloudfront] (https://youtu.be/kbI7kRWAU-w?si=hAtwkz-lZNF-Volz&t=129)
+Need help setting up IAM user, S3 bucket and Cloudfront? See [this guide for S3](https://youtu.be/eQAIojcArRY?si=zfGmxBu7J18vcijD&t=529) and [this for Cloudfront](https://youtu.be/kbI7kRWAU-w?si=hAtwkz-lZNF-Volz&t=129)
 
 ## How to Use?
 This will start a Ghost development instance listening on the default Ghost port of 2368.
