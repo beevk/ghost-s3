@@ -27,19 +27,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_SECRET }}
 
+      - name: Prepare Docker tags
+        id: prepareTag
+        run: |
+          VERSION=${GITHUB_REF##refs/tags/}  # Extract version from tag name
+          TAGS="${{ github.repository }}:latest"
+          if [[ ! -z $VERSION ]]; then
+            TAGS="$TAGS,${{ github.repository }}:$VERSION"
+          fi
+          echo "::set-output name=tags::$TAGS"
+
       - name: Build and push with latest tag
         uses: docker/build-push-action@v5
         with:
           context: "."
           platforms: "linux/amd64,linux/arm64"
           push: true
-          tags: "${{ github.repository }}:latest"
+          tags: ${{ steps.prepareTag.outputs.tags }}
 
-      - name: Build and push with actual version
-        if: github.ref_name != ''
-        uses: docker/build-push-action@v5
-        with:
-          context: "."
-          platforms: "linux/amd64,linux/arm64"
-          push: true
-          tags: ${{ github.repository }}:${{ github.ref_name }}
+      - name: Logout of Docker Hub
+        uses: docker/logout-action@v3
