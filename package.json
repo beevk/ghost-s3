@@ -8,7 +8,7 @@
     "url": "https://github.com/beevk/ghost-s3.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "docker build -t beevk/ghost-s3 ."
   },
   "keywords": [
     "ghost",

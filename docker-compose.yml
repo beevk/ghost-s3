@@ -19,12 +19,12 @@ services:
       NODE_ENV: development # default: production
 
       storage__active: s3
-      storage__s3__accessKeyId: accessKey # Change this
-      storage__s3__secretAccessKey: accessKeySecret # Change this
-      storage__s3__region: AWS-S3-REGION # Change this
-      storage__s3__bucket: BucketName # Change this
-      storage__s3__assetHost: https://UNIQUE.cloudfront.net # Change this
-      storage__s3__pathPrefix: images # Optional, Set this if you want all images to be stored in a subfolder
+      storage__s3__accessKeyId: ${S3_ACCESS_KEY_ID} # Change this
+      storage__s3__secretAccessKey: ${S3_SECRET_ACCESS_KEY} # Change this
+      storage__s3__region: ${S3_REGION} # Change this
+      storage__s3__bucket: ${S3_BUCKET} # Change this
+      storage__s3__assetHost: ${S3_ASSET_HOST} # Change this
+      storage__s3__pathPrefix: ${S3_PATH_PREFIX} # Optional, Set this if you want all images to be stored in a subfolder
       storage__s3__forcePathStyle: true
       storage__s3__acl: private
     volumes:
