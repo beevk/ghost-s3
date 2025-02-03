@@ -8,7 +8,8 @@
     "url": "https://github.com/beevk/ghost-s3.git"
   },
   "scripts": {
-    "build": "docker build -t beevk/ghost-s3 ."
+    "build": "docker build -t beevk/ghost-s3 .",
+    "docker:start": "docker run -p 2368:2368 --name ghost-app -e NODE_ENV=development beevk/ghost-s3:latest"
   },
   "keywords": [
     "ghost",
