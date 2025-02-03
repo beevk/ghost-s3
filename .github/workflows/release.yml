@@ -3,7 +3,7 @@ name: Publish Docker image
 on:
   push:
     tags:
-      - "release/**"
+      - "v*"
 
 jobs:
   build-and-push:
@@ -28,7 +28,7 @@ jobs:
       - name: Extract version from tag
         id: extract_version
         run: |
-          echo "version=${GITHUB_REF#refs/tags/release/}" >> $GITHUB_OUTPUT
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
       - name: Build and push with latest & actual version tag
         uses: docker/build-push-action@v5
