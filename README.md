@@ -1,6 +1,6 @@
 # Ghost S3 Storage Adapter
 
-This image contains Ghost:6.10 with S3 as storage adapter and Cloudfront as CDN. It also supports other S3 compatible storages. Read more [here](https://github.com/laosb/ghos3).
+This image contains Ghost:6-alpine with S3 as storage adapter and Cloudfront as CDN. It also supports other S3 compatible storages. Read more [here](https://github.com/laosb/ghos3).
 
 ### To configure S3 and Cloudfront, you need to pass following environment variables:
 ```yaml
